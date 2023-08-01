@@ -23,3 +23,13 @@ jobs:
     # ... further steps are automatically authenticated
     - name: my-step
       run: echo "Hello World!"
+      
+    # Install GCLOUD
+    - name: Install GCLOUD
+      uses: 'google-github-actions/setup-gcloud@v1'
+      
+    # Get a GCP Secret
+    - id: 'gcloud'
+      name: 'gcloud'
+      run: |-
+        gcloud secrets versions access "latest" --secret "test-secret"
