@@ -1,0 +1,25 @@
+name: wif-test
+on: push
+jobs:
+  my-job: 
+    runs-on: ubuntu-latest
+    
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    # actions/checkout MUST come before auth
+    - uses: 'actions/checkout@v3'
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/1048815135427/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        service_account: 'gha-test@ci-cd-terraform-cloudbuild.iam.gserviceaccount.com'
+
+    # ... further steps are automatically authenticated
+    - name: my-step
+      run: echo "Hello World!"
