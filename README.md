@@ -52,7 +52,10 @@ export WORKLOAD_IDENTITY_POOL_ID="projects/1048815135427/locations/global/worklo
 projects/1048815135427/locations/global/workloadIdentityPools/my-pool/providers/my-provider
 
 ### Setup Github Action Workflow: 
+1. In Github GUI - Actions - New Workflow - setup a workflow yourself
+2. Paste in the following code and Commit Changes.
 
+   
   name: wif-test
   on: push
   jobs:
