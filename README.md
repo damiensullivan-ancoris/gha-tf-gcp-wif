@@ -1,9 +1,8 @@
 # gha-tf-gcp-wif
+## Github Actions + Terraform + GCP + Workload Identity Federation 
+###USING WIF Google Authentication for GITHub Actions:
 
-### Github Actions + Terraform + GCP + Workload Identity Federation 
-
-USING WIF Google Authentication for GITHub Actions:
-
+## Setup GCP
 1.	export PROJECT_ID="ci-cd-terraform-cloudbuild" # update with your value
 
 2.	gcloud iam service-accounts create "gha-test" \
@@ -51,7 +50,7 @@ export WORKLOAD_IDENTITY_POOL_ID="projects/1048815135427/locations/global/worklo
 
 projects/1048815135427/locations/global/workloadIdentityPools/my-pool/providers/my-provider
 
-### Setup Github Action Workflow: 
+## Setup Github Action Workflow: 
 1. In Github GUI - Actions - New Workflow - setup a workflow yourself
 2. Paste in the following code and Commit Changes.
 
