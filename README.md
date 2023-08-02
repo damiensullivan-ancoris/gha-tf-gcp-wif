@@ -50,3 +50,41 @@ export WORKLOAD_IDENTITY_POOL_ID="projects/1048815135427/locations/global/worklo
   --format="value(name)"
 
 projects/1048815135427/locations/global/workloadIdentityPools/my-pool/providers/my-provider
+
+### Setup Github Action Workflow: 
+
+  name: wif-test
+  on: push
+  jobs:
+    my-job: 
+      runs-on: ubuntu-latest
+      
+      # Add "id-token" with the intended permissions.
+      permissions:
+        contents: 'read'
+        id-token: 'write'
+  
+      steps:
+      # actions/checkout MUST come before auth
+      - uses: 'actions/checkout@v3'
+  
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: 'projects/1048815135427/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'gha-test@ci-cd-terraform-cloudbuild.iam.gserviceaccount.com'
+  
+      # ... further steps are automatically authenticated
+      - name: my-step
+        run: echo "Hello World!"
+        
+      # Install GCLOUD
+      - name: Install GCLOUD
+        uses: 'google-github-actions/setup-gcloud@v1'
+        
+      # Get a GCP Secret
+      - id: 'gcloud'
+        name: 'gcloud'
+        run: |-
+          gcloud secrets versions access "latest" --secret "test-secret"
