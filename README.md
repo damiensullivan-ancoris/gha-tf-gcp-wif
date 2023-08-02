@@ -28,11 +28,6 @@ export WORKLOAD_IDENTITY_POOL_ID="projects/1048815135427/locations/global/worklo
 
 6.1 export WORKLOAD_IDENTITY_POOL_ID="projects/1048815135427/locations/global/workloadIdentityPools/my-pool" # value from above
 
-# This should look like:
-#
-#   projects/123456789/locations/global/workloadIdentityPools/my-pool
-#
-
 7. gcloud iam workload-identity-pools providers create-oidc "my-provider" \
   --project="${PROJECT_ID}" \
   --location="global" \
@@ -43,7 +38,6 @@ export WORKLOAD_IDENTITY_POOL_ID="projects/1048815135427/locations/global/worklo
 
 8. export REPO="damiensullivan-ancoris/gha-tf-gcp-wif" 
 
-** STEP 8 I messed up and got a similar error to yours 
 8.1 gcloud iam service-accounts add-iam-policy-binding "gha-test@ci-cd-terraform-cloudbuild.iam.gserviceaccount.com" \
   --project="${PROJECT_ID}" \
   --role="roles/iam.workloadIdentityUser" \
