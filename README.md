@@ -1,6 +1,6 @@
 # gha-tf-gcp-wif
 ## Github Actions + Terraform + GCP + Workload Identity Federation 
-###USING WIF Google Authentication for GITHub Actions:
+### USING WIF Google Authentication for GITHub Actions:
 
 ## Setup GCP
 1.	export PROJECT_ID="ci-cd-terraform-cloudbuild" # update with your value
